@@ -4,11 +4,14 @@
 int main()
 {
 
+	// Initialize srand
+	std::srand(static_cast<unsigned>(time(NULL)));
+
 	// Initialize Game Engine
 	Game game;
 
 	// Game Loop
-	while (game.running())
+	while (game.running() && !game.getEndgame())
 	{
 		// Update
 		game.update();
