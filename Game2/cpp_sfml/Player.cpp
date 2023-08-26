@@ -3,6 +3,13 @@
 // Initialization Functions
 void Player::initVariables(float x, float y, float movementSpeed, int hpMax)
 {
+	/*
+		@return void
+
+		Initialization Function
+
+		Initializes necessary variables
+	*/
 	this->shape.setPosition(x, y);
 	this->movementSpeed = movementSpeed;
 	this->hpMax = hpMax;
@@ -11,6 +18,13 @@ void Player::initVariables(float x, float y, float movementSpeed, int hpMax)
 
 void Player::initShape()
 {
+	/*
+		@return void
+
+		Initialization Function
+
+		Initializes the player shape
+	*/
 	this->shape.setFillColor(sf::Color::Green);
 	this->shape.setSize(sf::Vector2f(50.f, 50.f));
 }
@@ -18,33 +32,74 @@ void Player::initShape()
 // Constructors and Destructors
 Player::Player(float x, float y, float movementSpeed, int hpMax)
 {
+	/*
+		Constructor Function
+
+		Initializes a player instance
+		- calls all init functions
+	*/
 	this->initVariables(x, y, movementSpeed, hpMax);
 	this->initShape();
 }
 
 Player::~Player()
 {
+	/*
+		Destructor Function
+	*/
 }
 
 // Accessors
 const sf::RectangleShape& Player::getShape() const
 {
+	/*
+		@return sf::RectangleShape
+
+		Accessor Function
+
+		Returns the shape of the player
+	*/
 	return this->shape;
 }
 
 const int& Player::getHp() const
 {
+	/*
+		@return int
+
+		Accessor Function
+
+		Return the player's hp
+	*/
+
 	return this->hp;
 }
 
 const int& Player::getHpMax() const
 {
+	/*
+		@return int
+
+		Accessor Function
+
+		Return the player's maximum possible hp
+	*/
+
 	return this->hpMax;
 }
 
 // Functions
 void Player::takeDamage(const int damage)
 {
+	/*
+		@return void
+
+		Game Function
+
+		Makes player take a certain amount of damage
+		- remove hp if can take damage (more than 0)
+		- ensure hp not negative
+	*/
 	if (this->hp > 0)
 		this->hp -= damage;
 
@@ -54,6 +109,15 @@ void Player::takeDamage(const int damage)
 
 void Player::gainHealth(const int health)
 {
+	/*
+		@return void
+
+		Game Function
+
+		Makes player gain a certain amount of health
+		- add hp if can heal (less than max)
+		- ensure hp not more than max
+	*/
 	if (this->hp < this->hpMax)
 		this->hp += health;
 
@@ -63,7 +127,15 @@ void Player::gainHealth(const int health)
 
 void Player::updateInput()
 {
-	// Window bounds collision
+	/*
+		@return void
+
+		Game Function
+		- Update Function
+
+		Updates the player's position based on keyboard input
+		- left or right not both, then up or down not both
+	*/
 
 	// Keyboard input
 	// Left
@@ -90,6 +162,14 @@ void Player::updateInput()
 
 void Player::updateWindowBoundsCollision(const sf::RenderTarget* target)
 {
+	/*
+		@return void
+
+		Game Function
+		- Update Function
+
+		Checks for player window collisions and updates accordingly
+	*/
 	sf::FloatRect playerBounds;
 	//Left
 	playerBounds = this->shape.getGlobalBounds();
@@ -109,6 +189,15 @@ void Player::updateWindowBoundsCollision(const sf::RenderTarget* target)
 
 void Player::update(sf::RenderTarget* target)
 {
+	/*
+		@return void
+
+		Game Function
+		- Update Function
+
+		Main update function
+		- calls all the update functions
+	*/
 	this->updateInput();
 
 	this->updateWindowBoundsCollision(target);
@@ -116,5 +205,14 @@ void Player::update(sf::RenderTarget* target)
 
 void Player::render(sf::RenderTarget* target)
 {
+	/*
+		@return void
+
+		Game Function
+		- Render Function
+
+		Main render function
+		- renders the player
+	*/
 	target->draw(this->shape);
 }

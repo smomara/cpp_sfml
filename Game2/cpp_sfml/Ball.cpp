@@ -3,6 +3,17 @@
 // Initialization Functions
 void Ball::initShape(const sf::RenderWindow& window)
 {
+	/*
+		@return void
+
+		Initialization Function
+
+		Initialize the ball shape
+		- random radius
+		- color/outline depending on type
+		- random position
+	*/
+
 	// Random size (10-20)
 	this->shape.setRadius(static_cast<float>(rand() % 10 + 10));
 	// Set Color
@@ -37,30 +48,68 @@ void Ball::initShape(const sf::RenderWindow& window)
 Ball::Ball(const sf::RenderWindow& window, int type)
 	:type(type)
 {
+	/*
+		Constructor
+
+		Initializes a ball instance
+	*/
 	this->initShape(window);
 }
 
 Ball::~Ball()
 {
-
+	/*
+		Destructor
+	*/
 }
 
 const sf::CircleShape& Ball::getShape() const
 {
+	/*
+		@return sf::CircleShape
+
+		Accessor
+
+		returns the ball's shape
+	*/
 	return this->shape;
 }
 
 const int& Ball::getType() const
 {
+	/*
+		@return int
+
+		Accessor
+
+		returns the ball's type
+	*/
 	return this->type;
 }
 
 // Functions
 void Ball::update()
 {
+	/*
+		@return void
+
+		Game Function
+		- Update Function
+
+		Main update function
+	*/
 }
 
 void Ball::render(sf::RenderTarget* target)
 {
+	/*
+		@return void
+
+		Game Function
+		- Render Function
+
+		Main render function
+		- renders the ball shape
+	*/
 	target->draw(this->shape);
 }
