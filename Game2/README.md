@@ -1,0 +1,1 @@
+A game where the player collects various-sized balls, gaining points for regular ones and facing damaging or healing effects from different balls based on their size. The objective is to sustain health and accumulate points until health depletes, ending the game.
